@@ -4,7 +4,7 @@ function Input(props) {
   const args = props.props;
 
   return (
-    <div>
+    <React.Fragment>
       <label htmlFor={args.inputId}>{args.labelContent}</label>
       <input
         type={args.inputType}
@@ -13,7 +13,7 @@ function Input(props) {
         onChange={args.onChange}
         onBlur={args.onBlur}
       />
-    </div>
+    </React.Fragment>
   );
 }
 

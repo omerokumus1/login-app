@@ -151,7 +151,11 @@ const Login = (props) => {
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
-        <InputField isPasswordStateValid={emailState.isValid}>
+        <InputField
+          className={`${classes.control} ${
+            emailState.isValid === false ? classes.invalid : ''
+          }`}
+        >
           <Input
             props={
               new InputObj(
@@ -166,7 +170,11 @@ const Login = (props) => {
           />
         </InputField>
 
-        <InputField isPasswordStateValid={emailState.isValid}>
+        <InputField
+          className={`${classes.control} ${
+            passwordState.isValid === false ? classes.invalid : ''
+          }`}
+        >
           <Input
             props={
               new InputObj(
