@@ -4,6 +4,8 @@ import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
 import AuthContext from '../store/auth-context';
+import Input from '../Input/Input';
+import InputField from '../Input/InputField';
 
 const actionTypes = {
   email: {
@@ -14,6 +16,22 @@ const actionTypes = {
     userInput: 'USER_INPUT',
     userBlur: 'USER_BLUR',
   },
+};
+
+const InputObj = function (
+  labelContent,
+  inputId,
+  inputType,
+  inputValue,
+  onChange,
+  onBlur
+) {
+  this.labelContent = labelContent;
+  this.inputId = inputId;
+  this.inputType = inputType;
+  this.inputValue = inputValue;
+  this.onChange = onChange;
+  this.onBlur = onBlur;
 };
 
 /**
@@ -133,34 +151,35 @@ const Login = (props) => {
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
-        <div
-          className={`${classes.control} ${
-            emailState.isValid === false ? classes.invalid : ''
-          }`}
-        >
-          <label htmlFor="email">E-Mail</label>
-          <input
-            type="email"
-            id="email"
-            value={emailState.value}
-            onChange={emailChangeHandler}
-            onBlur={validateEmailHandler}
+        <InputField isPasswordStateValid={emailState.isValid}>
+          <Input
+            props={
+              new InputObj(
+                'E-Mail',
+                'email',
+                'email',
+                emailState.value,
+                emailChangeHandler,
+                validateEmailHandler
+              )
+            }
           />
-        </div>
-        <div
-          className={`${classes.control} ${
-            passwordState.isValid === false ? classes.invalid : ''
-          }`}
-        >
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={passwordState.value}
-            onChange={passwordChangeHandler}
-            onBlur={validatePasswordHandler}
+        </InputField>
+
+        <InputField isPasswordStateValid={emailState.isValid}>
+          <Input
+            props={
+              new InputObj(
+                'Password',
+                'password',
+                'password',
+                passwordState.value,
+                passwordChangeHandler,
+                validatePasswordHandler
+              )
+            }
           />
-        </div>
+        </InputField>
         <div className={classes.actions}>
           <Button type="submit" className={classes.btn} disabled={!formIsValid}>
             Login

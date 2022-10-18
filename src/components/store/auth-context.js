@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export const AuthContextObj = function (isLoggedIn, onLogout, onLogin) {
+const AuthContextObj = function (isLoggedIn, onLogout, onLogin) {
   this.isLoggedIn = isLoggedIn;
   this.onLogout = onLogout;
   this.onLogin = onLogin;
@@ -31,11 +31,11 @@ export const AuthContextProvider = (props) => {
   };
 
   return (
-    <AuthContextProvider
+    <AuthContext.Provider
       value={new AuthContextObj(isLoggedIn, logoutHandler, loginHandler)}
     >
       {props.children}
-    </AuthContextProvider>
+    </AuthContext.Provider>
   );
 };
 
